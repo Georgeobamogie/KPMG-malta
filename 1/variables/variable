@@ -1,0 +1,5 @@
+variable "ami_id" {
+  description = "The ID of the Amazon Machine Image (AMI) to use for the EC2 instances"
+  type        = string
+  default     = "ami-0123456789abcdef"
+}
