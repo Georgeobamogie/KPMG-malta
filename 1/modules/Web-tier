@@ -1,0 +1,8 @@
+module "web" {
+  source = "./modules/web"
+
+  vpc_id = module.vpc.vpc_id
+  public_subnet_ids = module.vpc.public_subnet_ids
+  instance_type = "t2.micro"
+  ami_id = var.ami_id
+}
