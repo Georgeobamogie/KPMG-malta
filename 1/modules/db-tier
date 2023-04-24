@@ -1,0 +1,8 @@
+module "db" {
+  source = "./modules/db"
+
+  vpc_id = module.vpc.vpc_id
+  private_subnet_ids = module.vpc.private_subnet_ids
+  instance_class = "db.t2.micro"
+  engine = "mysql"
+}
