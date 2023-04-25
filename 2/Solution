@@ -1,0 +1,27 @@
+import requests
+import json
+
+def get_metadata(key=None):
+    url = 'http://169.254.169.254/latest/meta-data/'
+    if key:
+        url += key
+    response = requests.get(url)
+    if response.status_code == 200:
+        if key:
+            return {key: response.text}
+        else:
+            metadata = {}
+            for item in response.text.split('\n'):
+                if item.endswith('/'):
+                    metadata[item[:-1]] = get_metadata(item)
+                else:
+                    metadata[item] = get_metadata(item)[item]
+            return metadata
+    else:
+        return {}
+
+metadata = get_metadata()
+print(json.dumps(metadata, indent=4))
+
+
+#the get_metadata function can be called with a specific key as an argument to retrieve its value individually. For example: get_metadata('instance-id').
