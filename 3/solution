@@ -5,27 +5,11 @@ def get_value(obj, key):
     return obj
 
 # Test
-object1 = {"a":{"b":{"c":"d"}}}
-key1 = "a/b/c"
-print(get_value(object1, key1)) # "d"
-
-object2 = {"x":{"y":{"z":"a"}}}
-key2 = "x/y/z"
-print(get_value(object2, key2)) # "a"
-
-
-def get_value(obj, key):
-    keys = key.split('/')
-    for k in keys:
-        obj = obj[k]
-    return obj
-
-# Test
 def test_get_value():
     object1 = {"a":{"b":{"c":"d"}}}
     key1 = "a/b/c"
     assert get_value(object1, key1) == "d"
-
+    
     object2 = {"x":{"y":{"z":"a"}}}
     key2 = "x/y/z"
     assert get_value(object2, key2) == "a"
